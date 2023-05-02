@@ -5,6 +5,7 @@ import sungsu.springone.entity.News;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Repository
 public class NewsRepository {
@@ -20,5 +21,16 @@ public class NewsRepository {
 
     public News find(Long id){
         return em.find(News.class, id);
+    }
+
+    public List<News> findAll() {
+        List<News> result = em.createQuery("select n from News n", News.class)
+                .getResultList();
+
+        return result;
+    }
+
+    public int count(){
+        return findAll().size();
     }
 }

@@ -1,32 +1,27 @@
 package sungsu.springone.request;
 
 
-public class NewsCreate {
+import lombok.Builder;
 
+public class NewsCreate {
     private String title;
-    private String image;
+
+    private String content;
 
     public NewsCreate() {
     }
 
-    public NewsCreate(String title, String image) {
+    @Builder
+    public NewsCreate(String title, String content) {
         this.title = title;
-        this.image = image;
-    }
-
-    public void setTitle(String title){
-        this.title = title;
+        this.content = content;
     }
 
     public String getTitle(){
        return title;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
+    public String getContent() {
+        return content;
     }
 }
