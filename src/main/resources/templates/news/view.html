@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>뉴스 정보</title>
+    <style>
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        a:hover {
+            background-color: #555;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<h1>뉴스 정보</h1>
+<article>
+    <h2 th:text="${result.title}">제목이 들어갑니다</h2>
+    <p th:text="${result.content}">컨텐츠 내용이 들어갑니다</p>
+</article>
+<a href="/">목록</a>
+</body>
+</html>

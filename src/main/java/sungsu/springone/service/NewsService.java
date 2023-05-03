@@ -3,11 +3,13 @@ package sungsu.springone.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import sungsu.springone.dto.NewsListDto;
 import sungsu.springone.entity.News;
 import sungsu.springone.repository.NewsRepository;
 import sungsu.springone.request.NewsCreate;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)

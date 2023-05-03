@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>News App</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            display: flex;
+            flex-direction: row;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            margin: 0 10px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Button styles */
+        .buttons {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .login-btn {
+            background-color: #fff;
+            border: none;
+            color: #333;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+            padding: 10px;
+        }
+
+        /*.write-btn {*/
+        /*    background-color: #333;*/
+        /*    border: none;*/
+        /*    color: #fff;*/
+        /*    cursor: pointer;*/
+        /*    font-size: 16px;*/
+        /*    padding: 10px;*/
+        /*}*/
+
+        /* Main styles */
+        main {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        article {
+            margin-bottom: 20px;
+
+        }
+
+        h2 {
+            margin: 0 0 10px 0;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        a:hover {
+            background-color: #555;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>News App</h1>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Politics</a></li>
+            <li><a href="#">Business</a></li>
+            <li><a href="#">Technology</a></li>
+            <li><a href="#">Entertainment</a></li>
+        </ul>
+    </nav>
+    <div class="buttons">
+        <a class="login-btn" href="/news/createForm">로그인</a>
+        <a class="login-btn" href="/news/new">글 작성</a>
+    </div>
+</header>
+<main>
+    <article th:each="result : ${results}">
+        <h2 th:text="${result.title}">제목이 들어갑니다</h2>
+        <p th:text="${result.content}">컨텐츠 내용이 들어갑니다</p>
+        <a th:href="@{/news/{newsId}(newsId=${result.id})}">자세히</a>
+    </article>
+</main>
+</body>
+</html>

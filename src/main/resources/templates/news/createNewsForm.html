@@ -61,21 +61,29 @@
 </head>
 <body>
 <h1>뉴스 등록</h1>
-<form action="/submit_news" method="POST">
-    <label for="title">제목:</label>
-    <input type="text" id="title" name="title" required><br>
-    <label for="content">내용:</label>
-    <textarea id="content" name="content" required></textarea><br>
-    <label for="author">작성자:</label>
-    <input type="text" id="author" name="author" required><br>
-    <label for="category">카테고리:</label>
-    <select id="category" name="category">
-        <option value="politics">정치</option>
-        <option value="economy">경제</option>
-        <option value="society">사회</option>
-        <option value="culture">문화</option>
-        <option value="sports">스포츠</option>
-    </select><br>
+<form action="/news/new" th:object="${newsForm}" method="POST">
+
+    <label th:for="title">제목:</label>
+    <input type="text" th:field="*{title}" class="fieldError"
+           placeholder="제목을 입력하세요">
+    <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}">InCorrect date</p>
+    <br>
+
+    <label th:for="content">내용:</label>
+    <textarea th:field="*{content}" class="form-control"
+              placeholder="내용을 입력하세요"></textarea><br>
+
+<!--    <label for="author">작성자:</label>-->
+<!--    <input type="text" id="author" name="author" required><br>-->
+
+<!--    <label for="category">카테고리:</label>-->
+<!--    <select id="category" name="category">-->
+<!--        <option value="politics">정치</option>-->
+<!--        <option value="economy">경제</option>-->
+<!--        <option value="society">사회</option>-->
+<!--        <option value="culture">문화</option>-->
+<!--        <option value="sports">스포츠</option>-->
+<!--    </select><br>-->
     <input type="submit" value="등록">
 </form>
 </body>
