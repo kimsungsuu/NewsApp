@@ -44,9 +44,9 @@ public class NewsController {
     }
 
     @PostMapping("/news/new")
-    public String create(@Valid NewsForm newsForm, BindingResult result) {
+    public String create(@Valid NewsForm newsForm, BindingResult bindingResult) {
 
-        if (result.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return "news/createNewsForm";
         }
 

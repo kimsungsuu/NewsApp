@@ -2,6 +2,8 @@ package sungsu.springone.entity;
 
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import sungsu.springone.dto.MemberFormDto;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,9 +20,12 @@ public class Member {
 
     private String name;
 
+    @Column(unique = true)
     private String email;
 
-//    private String password; login과 멤버는 다르다. login 기능은 나중에 추가하자
+    private String password;
+
+    private String address;
 
 //    @OneToMany(mappedBy = "member")
 //    private List<News> newsList = new ArrayList<>();
@@ -29,9 +34,30 @@ public class Member {
     }
 
     @Builder
-    public Member(String name, String email){
+    public Member(String name, String email, String address, String password){
         this.name = name;
         this.email = email;
+        this.address = address;
+        this.password = password;
+    }
+
+    /**
+     * FormDto에서 넘겨받은 값을 엔티티 값으로 Builder한 뒤 반환하는 메서드
+     * @param memberFormDto
+     * @param passwordEncoder
+     */
+    public static Member createMember(MemberFormDto memberFormDto,
+                                      PasswordEncoder passwordEncoder){
+
+        String password = passwordEncoder.encode(memberFormDto.getPassword());
+        Member member = Member.builder()
+                .name(memberFormDto.getName())
+                .email(memberFormDto.getEmail())
+                .address(memberFormDto.getAddress())
+                .password(password)
+                .build();
+
+        return member;
     }
 
     /**

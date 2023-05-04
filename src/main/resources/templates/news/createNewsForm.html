@@ -61,7 +61,7 @@
 </head>
 <body>
 <h1>뉴스 등록</h1>
-<form action="/news/new" th:object="${newsForm}" method="POST">
+<form role="form" action="/news/new" th:object="${newsForm}" method="POST">
 
     <label th:for="title">제목:</label>
     <input type="text" th:field="*{title}" class="fieldError"
@@ -85,6 +85,8 @@
 <!--        <option value="sports">스포츠</option>-->
 <!--    </select><br>-->
     <input type="submit" value="등록">
+    <a href="/">목록</a>
+
 </form>
 </body>
 </html>
