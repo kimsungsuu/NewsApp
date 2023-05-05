@@ -52,6 +52,8 @@ class MemberServiceTest {
 
         //then
         assertEquals("이미 가입된 회원입니다.", exception.getMessage());
+        assertEquals("1234@naver.com",
+                memberRepository.findByEmail(member.getEmail()).getEmail());
     }
 
 

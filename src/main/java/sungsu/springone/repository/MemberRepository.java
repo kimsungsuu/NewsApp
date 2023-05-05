@@ -24,13 +24,17 @@ public class MemberRepository {
         return member;
     }
 
-    public List<Member> findByEmail(String email){
+    public Member findByEmail(String email){
 
-        List<Member> result = em.createQuery("select m from Member m where m.email = :email", Member.class)
+        List<Member> members = em.createQuery("select m from Member m where m.email = :email", Member.class)
                 .setParameter("email", email)
                 .getResultList();
 
-        return result;
+        if(members.isEmpty()){
+            return null;
+        }else{
+            return members.get(0);
+        }
     }
 
 

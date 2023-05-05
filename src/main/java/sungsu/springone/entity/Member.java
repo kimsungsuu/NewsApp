@@ -3,6 +3,7 @@ package sungsu.springone.entity;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import sungsu.springone.constant.Role;
 import sungsu.springone.dto.MemberFormDto;
 
 import javax.persistence.*;
@@ -27,6 +28,10 @@ public class Member {
 
     private String address;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+
 //    @OneToMany(mappedBy = "member")
 //    private List<News> newsList = new ArrayList<>();
 
@@ -34,11 +39,15 @@ public class Member {
     }
 
     @Builder
-    public Member(String name, String email, String address, String password){
+    private Member(String name, String email, String address, String password){
         this.name = name;
         this.email = email;
         this.address = address;
         this.password = password;
+    }
+
+    private void setRole(Role role){
+        this.role = role;
     }
 
     /**
@@ -56,6 +65,8 @@ public class Member {
                 .address(memberFormDto.getAddress())
                 .password(password)
                 .build();
+
+        member.setRole(Role.USER);
 
         return member;
     }

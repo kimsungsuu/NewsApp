@@ -16,8 +16,8 @@ import sungsu.springone.service.MemberService;
 public class SecurityConfig{
 
 
-    @Autowired
-    MemberService memberService;
+//    @Autowired
+//    MemberService memberService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -32,16 +32,16 @@ public class SecurityConfig{
                 .logoutSuccessUrl("/")
         ;
 
-        http.authorizeRequests()
-                .mvcMatchers("/css/**", "/js/**", "/img/**").permitAll()
-                .mvcMatchers("/", "/members/**", "/item/**", "/images/**").permitAll()
-                .mvcMatchers("/admin/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
-        ;
+//        http.authorizeRequests()
+//                .mvcMatchers("/css/**", "/js/**", "/img/**").permitAll()
+//                .mvcMatchers("/", "/members/**").permitAll()
+//                .mvcMatchers("/admin/**").hasRole("ADMIN")
+//                .anyRequest().authenticated()
+//        ;
 
-        http.exceptionHandling()
-                .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
-        ;
+//        http.exceptionHandling()
+//                .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+//        ;
 
         return http.build();
     }
