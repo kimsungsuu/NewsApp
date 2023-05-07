@@ -60,7 +60,7 @@ MemberService에서 interface UserDetailsService를 구현하는 구현체 loadU
 
 Security Config 파일에서 url 접근 권한 설정.
 
-news 글 작성 시 forbidden error 발생하는 것 해결
+news 글 작성 시 forbidden error 발생하는 것 해결<br>
 원인 : csrf 토큰을 선언하지 않았음.
 
 타임리프 시큐리티를 사용하여 타임리프에서 인증/비인증 접근 처리
