@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import sungsu.springone.dto.MemberFormDto;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sungsu.springone.entity.Member;
 import sungsu.springone.service.MemberService;
 
@@ -27,11 +27,11 @@ public class MemberController {
         return "/member/createMemberForm";
     }
 
-
     @PostMapping("/members/new")
     public String create(@Valid MemberFormDto memberFormDto,
                          BindingResult bindingResult,
-                         Model model){
+                         Model model,
+                         RedirectAttributes redirectAttributes){
 
         if (bindingResult.hasErrors()) {
             return "member/createMemberForm";
@@ -45,7 +45,9 @@ public class MemberController {
             return "member/createMemberForm";
         }
 
-        return "redirect:/";
+        redirectAttributes.addFlashAttribute("message", "회원가입이 완료되었습니다.");
+
+        return "redirect:/members/login";
     }
 
     @GetMapping("members/login")

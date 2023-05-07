@@ -4,11 +4,9 @@ import lombok.Builder;
 import lombok.Getter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import sungsu.springone.constant.Role;
-import sungsu.springone.dto.MemberFormDto;
+import sungsu.springone.controller.MemberFormDto;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -66,7 +64,7 @@ public class Member {
                 .password(password)
                 .build();
 
-        member.setRole(Role.USER);
+        member.setRole(Role.ADMIN);
 
         return member;
     }

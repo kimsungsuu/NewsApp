@@ -1,4 +1,4 @@
-package sungsu.springone.dto;
+package sungsu.springone.controller;
 
 import lombok.Getter;
 import lombok.Setter;

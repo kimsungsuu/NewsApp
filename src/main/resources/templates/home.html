@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>News App</title>
@@ -119,8 +120,9 @@
         </ul>
     </nav>
     <div class="buttons">
-        <a class="login-btn" href="/members/login">로그인</a>
-        <a class="login-btn" href="/news/new">글 작성</a>
+        <a class="login-btn" href="/members/login" sec:authorize="isAnonymous()">로그인</a>
+        <a class="login-btn" href="/members/logout" sec:authorize="isAuthenticated()">로그아웃</a>
+        <a class="login-btn" href="/admin/news/new" sec:authorize="isAuthenticated()">글 작성</a>
     </div>
 </header>
 <main>

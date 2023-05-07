@@ -5,8 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.annotation.Rollback;
+import sungsu.springone.controller.MemberFormDto;
 import sungsu.springone.entity.Member;
 import sungsu.springone.repository.MemberRepository;
 
@@ -78,5 +79,31 @@ class MemberServiceTest {
 
         //then
         assertEquals(password, memberRepository.find(member.getId()).getPassword());
+    }
+
+    @Test
+    @DisplayName("로그인 기능 테스트")
+    void test3(){
+        //given
+
+        String password = passwordEncoder.encode("김성수");
+
+        MemberFormDto memberFormDto = new MemberFormDto();
+
+        memberFormDto.setName("김성수");
+        memberFormDto.setEmail("1234@naver.com");
+        memberFormDto.setPassword("1234");
+        memberFormDto.setAddress("경기도");
+
+        Member member = Member.createMember(memberFormDto, passwordEncoder);
+
+
+        //when
+        memberService.join(member);
+
+        UserDetails userDetails = memberService.loadUserByUsername(member.getEmail());
+
+        //then
+        assertEquals("1234@naver.com", userDetails.getUsername());
     }
 }

@@ -37,13 +37,13 @@ public class NewsController {
         return "/home";
     }
 
-    @GetMapping("/news/new")
+    @GetMapping("/admin/news/new")
     public String createForm(Model model) {
         model.addAttribute("newsForm", new NewsForm());
         return "news/createNewsForm";
     }
 
-    @PostMapping("/news/new")
+    @PostMapping("/admin/news/new")
     public String create(@Valid NewsForm newsForm, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
